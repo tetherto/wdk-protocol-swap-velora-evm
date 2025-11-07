@@ -1,0 +1,62 @@
+{
+  "name": "@tetherto/wdk-protocol-swap-velora-evm",
+  "version": "1.0.0-beta.4",
+  "description": "A simple package that lets @tetherto/wdk-wallet-evm and wallet-evm-erc-4337 wallet accounts interact with the velora protocol.",
+  "keywords": [
+    "wdk",
+    "protocol",
+    "swap",
+    "paraswap",
+    "ethereum",
+    "erc-4337"
+  ],
+  "author": "Tether",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tetherto/wdk-protocol-swap-paraswap-evm.git"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build:types": "tsc",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+  },
+  "dependencies": {
+    "@tetherto/wdk-wallet": "^1.0.0-beta.1",
+    "@tetherto/wdk-wallet-evm": "^1.0.0-beta.2",
+    "@tetherto/wdk-wallet-evm-erc-4337": "^1.0.0-beta.1",
+    "@velora-dex/sdk": "9.0.0",
+    "bare-node-runtime": "^1.1.4",
+    "ethers": "6.13.5"
+  },
+  "devDependencies": {
+    "cross-env": "10.0.0",
+    "jest": "30.0.5",
+    "standard": "17.1.2",
+    "typescript": "5.8.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "bare": "./bare.js",
+      "default": "./index.js"
+    },
+    "./package": {
+      "default": "./package.json"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "standard": {
+    "ignore": [
+      "bare.js",
+      "tests/**/*.js"
+    ]
+  }
+}
