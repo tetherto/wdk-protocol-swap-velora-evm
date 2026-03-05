@@ -25,8 +25,8 @@ export default class VeloraProtocolEvm extends SwapProtocol {
      * Users must first approve the necessary amount of input tokens to the Velora protocol using the {@link WalletAccountEvm#approve} or the {@link WalletAccountEvmErc4337#approve} method.
      *
      * @param {SwapOptions} options - The swap's options.
-     * @param {Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig> & Pick<SwapProtocolConfig, 'swapMaxFee'>} [config] - Allows
-     *   to override the 'swapMaxFee' option. If the protocol has been initialized with an erc-4337 wallet account, it also allows to override its configuration options.
+     * @param {Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig> & Pick<SwapProtocolConfig, 'swapMaxFee'>} [config] - If
+     *   the protocol has been initialized with an erc-4337 wallet account, it can be used to override its configuration options along with the 'swapMaxFee' option.
      * @returns {Promise<SwapResult>} The swap's result.
      */
     swap(options: SwapOptions, config?: Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig> & Pick<SwapProtocolConfig, "swapMaxFee">): Promise<SwapResult>;
@@ -37,7 +37,7 @@ export default class VeloraProtocolEvm extends SwapProtocol {
      *
      * @param {SwapOptions} options - The swap's options.
      * @param {Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig>} [config] - If the protocol has been initialized with
-     *   an erc-4337 wallet account, allows to override its configuration options.
+     *   an erc-4337 wallet account, it can be used to override its configuration options.
      * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
      */
     quoteSwap(options: SwapOptions, config?: Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig>): Promise<Omit<SwapResult, "hash">>;
