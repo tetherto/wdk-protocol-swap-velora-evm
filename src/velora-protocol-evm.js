@@ -28,7 +28,9 @@ import { constructSimpleSDK } from '@velora-dex/sdk'
 
 /** @typedef {import('@tetherto/wdk-wallet-evm').WalletAccountReadOnlyEvm} WalletAccountReadOnlyEvm */
 
-/** @typedef {import('@tetherto/wdk-wallet-evm-erc-4337').EvmErc4337WalletConfig} EvmErc4337WalletConfig */
+/** @typedef {import('@tetherto/wdk-wallet-evm-erc-4337').EvmErc4337WalletPaymasterTokenConfig} EvmErc4337WalletPaymasterTokenConfig */
+/** @typedef {import('@tetherto/wdk-wallet-evm-erc-4337').EvmErc4337WalletSponsorshipPolicyConfig} EvmErc4337WalletSponsorshipPolicyConfig */
+/** @typedef {import('@tetherto/wdk-wallet-evm-erc-4337').EvmErc4337WalletNativeCoinsConfig} EvmErc4337WalletNativeCoinsConfig */
 
 export default class VeloraProtocolEvm extends SwapProtocol {
   /**
@@ -68,9 +70,8 @@ export default class VeloraProtocolEvm extends SwapProtocol {
    * Users must first approve the necessary amount of input tokens to the Velora protocol using the {@link WalletAccountEvm#approve} or the {@link WalletAccountEvmErc4337#approve} method.
    *
    * @param {SwapOptions} options - The swap's options.
-   * @param {Pick<EvmErc4337WalletConfig, 'paymasterToken'> & Pick<SwapProtocolConfig, 'swapMaxFee'>} [config] - If the protocol has
-   *   been initialized with an erc-4337 wallet account, overrides the 'paymasterToken' option defined in its configuration and the
-   *   'swapMaxFee' option defined in the protocol configuration.
+   * @param {Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig> & Pick<SwapProtocolConfig, 'swapMaxFee'>} [config] - Allows
+   *   to override the 'swapMaxFee' option. If the protocol has been initialized with an erc-4337 wallet account, it also allows to override its configuration options.
    * @returns {Promise<SwapResult>} The swap's result.
    */
   async swap (options, config) {
@@ -82,11 +83,11 @@ export default class VeloraProtocolEvm extends SwapProtocol {
       throw new Error('The wallet must be connected to a provider in order to perform swap operations.')
     }
 
+    const { swapMaxFee } = { ...this._config, ...config }
+
     const { swapTx, tokenInAmount, tokenOutAmount } = await this._getSwapTransactions(options)
 
     if (this._account instanceof WalletAccountEvmErc4337) {
-      const { swapMaxFee } = config ?? this._config
-
       const { fee } = await this._account.quoteSendTransaction([swapTx], config)
 
       if (swapMaxFee !== undefined && fee >= swapMaxFee) {
@@ -100,7 +101,7 @@ export default class VeloraProtocolEvm extends SwapProtocol {
 
     const { fee } = await this._account.quoteSendTransaction(swapTx)
 
-    if (this._config.swapMaxFee !== undefined && fee >= this._config.swapMaxFee) {
+    if (swapMaxFee !== undefined && fee >= swapMaxFee) {
       throw new Error('Exceeded maximum fee cost for swap operation.')
     }
 
@@ -115,8 +116,8 @@ export default class VeloraProtocolEvm extends SwapProtocol {
    * Users must first approve the necessary amount of input tokens to the Velora protocol using the {@link WalletAccountEvm#approve} or the {@link WalletAccountEvmErc4337#approve} method.
    *
    * @param {SwapOptions} options - The swap's options.
-   * @param {Pick<EvmErc4337WalletConfig, 'paymasterToken'>} [config] - If the protocol has been initialized with an erc-4337
-   *   wallet account, overrides the 'paymasterToken' option defined in its configuration.
+   * @param {Partial<EvmErc4337WalletPaymasterTokenConfig | EvmErc4337WalletSponsorshipPolicyConfig | EvmErc4337WalletNativeCoinsConfig>} [config] - If the protocol has been initialized with
+   *   an erc-4337 wallet account, allows to override its configuration options.
    * @returns {Promise<Omit<SwapResult, 'hash'>>} The swap's quotes.
    */
   async quoteSwap (options, config) {
