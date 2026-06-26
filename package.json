@@ -1,6 +1,6 @@
 {
   "name": "@tetherto/wdk-protocol-swap-velora-evm",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "A simple package that lets @tetherto/wdk-wallet-evm and wallet-evm-erc-4337 wallet accounts interact with the velora protocol.",
   "keywords": [
     "wdk",
@@ -26,16 +26,16 @@
     "test:coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "dependencies": {
-    "@tetherto/wdk-wallet": "1.0.0-beta.7",
-    "@tetherto/wdk-wallet-evm": "1.0.0-beta.8",
-    "@tetherto/wdk-wallet-evm-erc-4337": "1.0.0-beta.5",
+    "@tetherto/wdk-wallet": "1.0.0-beta.11",
+    "@tetherto/wdk-wallet-evm": "1.0.0-beta.14",
+    "@tetherto/wdk-wallet-evm-erc-4337": "1.0.0-beta.9",
     "@velora-dex/sdk": "9.0.0",
     "bare-node-runtime": "^1.1.4",
-    "ethers": "6.13.5"
+    "ethers": "6.17.0"
   },
   "devDependencies": {
-    "cross-env": "10.0.0",
-    "jest": "30.0.5",
+    "cross-env": "10.1.0",
+    "jest": "30.4.2",
     "standard": "17.1.2",
     "typescript": "5.8.3"
   },

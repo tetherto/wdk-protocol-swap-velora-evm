@@ -261,7 +261,8 @@ describe('VeloraSwapProtocolEvm', () => {
     beforeEach(() => {
       account = new WalletAccountEvmErc4337(SEED, "0'/0/0", {
         chainId: 1,
-        provider: 'https://mock-rpc-url.com'
+        provider: 'https://mock-rpc-url.com',
+        safeModulesVersion: '0.3.0'
       })
 
       account.getAddress = jest.fn().mockResolvedValue(USER_ADDRESS)
@@ -356,7 +357,8 @@ describe('VeloraSwapProtocolEvm', () => {
       test('should throw if the account is read-only', async () => {
         const account = new WalletAccountReadOnlyEvmErc4337(USER_ADDRESS, {
           chainId: 1,
-          provider: 'https://mock-rpc-url.com'
+          provider: 'https://mock-rpc-url.com',
+          safeModulesVersion: '0.3.0'
         })
 
         const protocol = new VeloraProtocolEvm(account)
@@ -367,7 +369,8 @@ describe('VeloraSwapProtocolEvm', () => {
 
       test('should throw if the account is not connected to a provider', async () => {
         const account = new WalletAccountEvmErc4337(SEED, "0'/0/0", {
-          chainId: 1
+          chainId: 1,
+          safeModulesVersion: '0.3.0'
         })
 
         const protocol = new VeloraProtocolEvm(account)
@@ -439,7 +442,8 @@ describe('VeloraSwapProtocolEvm', () => {
 
       test('should throw if the account is not connected to a provider', async () => {
         const account = new WalletAccountEvmErc4337(SEED, "0'/0/0", {
-          chainId: 1
+          chainId: 1,
+          safeModulesVersion: '0.3.0'
         })
 
         const protocol = new VeloraProtocolEvm(account)
