@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tetherto/wdk-protocol-swap-paraswap-evm.git"
+    "url": "git://github.com/tetherto/wdk-protocol-swap-velora-evm.git"
   },
   "main": "index.js",
   "type": "module",
