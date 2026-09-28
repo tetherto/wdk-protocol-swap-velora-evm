@@ -2,15 +2,17 @@
 
 **Note**: This package is currently in beta. Please test thoroughly in development environments before using in production.
 
-A secure and straightforward package that lets EVM wallet accounts swap tokens using the Velora aggregator. This package provides a clean SDK for token swaps on EVM chains, supporting both standard wallets and ERC-4337 smart accounts.
+A token swap module for WDK (Wallet Development Kit) by Tether that lets EVM wallet accounts use the Velora aggregator. This package provides a clean SDK for token swaps on EVM chains, supporting both standard wallets and ERC-4337 smart accounts.
 
 This module can be managed by the [`@tetherto/wdk`](https://github.com/tetherto/wdk-core) suite, which provides a unified interface for managing multiple WDK wallet and protocol modules across different blockchains.
+
+See the [module documentation](https://docs.wdk.tether.io/sdk/swap-modules/swap-velora-evm/).
 
 ## 🔍 About WDK
 
 This module is part of the **WDK (Wallet Development Kit)** project, which enables developers to build secure, non-custodial wallets with unified blockchain access and complete user control.
 
-For documentation on the complete WDK ecosystem, see https://docs.wallet.tether.io.
+For documentation on the complete WDK ecosystem, see https://docs.wdk.tether.io/.
 
 ## 🌟 Features
 
